@@ -17,7 +17,11 @@ INSTALL(
 # Configure pkg-config file
 SET(
     LGSM_INCLUDE_INSTALL_DIR 
-    ${CMAKE_INSTALL_PREFIX}/include/eigen3
+    ${CMAKE_INSTALL_PREFIX}/include/eigen_lgsm/unsupported
+)
+SET(
+    EIGEN_INCLUDE_INSTALL_DIR 
+    ${CMAKE_INSTALL_PREFIX}/include/eigen_lgsm
 )
 
 CONFIGURE_FILE(

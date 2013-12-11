@@ -3,4 +3,4 @@ Description: Lie-Group for Solid Mechanics extension of Eigen
 Requires:
 Version: 3.0.5
 Libs:
-Cflags: -I${LGSM_INCLUDE_INSTALL_DIR}
+Cflags: -I${LGSM_INCLUDE_INSTALL_DIR} -I${EIGEN_INCLUDE_INSTALL_DIR}
