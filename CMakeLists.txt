@@ -1,30 +1,34 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+# Copyright (c) 2013 ISIR CNRS
+# Authors: Sovannara Hak
 
-# Set the build type.  Options are:
-#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
-#  Debug          : w/ debug symbols, w/o optimization
-#  Release        : w/o debug symbols, w/ optimization
-#  RelWithDebInfo : w/ debug symbols, w/ optimization
-#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
-#set(ROS_BUILD_TYPE RelWithDebInfo)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+SET(PROJECT_NAME eigen_lgsm)
+SET(PROJECT_DESCRIPTION "Lgsm extension for Eigen3")
+SET(PROJECT_URL "https://github.com/sovannara-hak/eigen_lgsm")
 
-rosbuild_init()
+# Install include files
+INSTALL(
+    DIRECTORY ${CMAKE_SOURCE_DIR}/include/
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ
+)
 
-#set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-#set the default path for built libraries to the "lib" directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+# Configure pkg-config file
+SET(
+    LGSM_INCLUDE_INSTALL_DIR 
+    ${CMAKE_INSTALL_PREFIX}/include/eigen3
+)
 
-#uncomment if you have defined messages
-#rosbuild_genmsg()
-#uncomment if you have defined services
-#rosbuild_gensrv()
+CONFIGURE_FILE(
+    "${CMAKE_SOURCE_DIR}/pkg-config/eigen_lgsm.pc.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/eigen_lgsm.pc"
+)
 
-#common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
-#target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-#rosbuild_add_executable(example examples/example.cpp)
-#target_link_libraries(example ${PROJECT_NAME})
+INSTALL(
+    FILES "${CMAKE_CURRENT_BINARY_DIR}/eigen_lgsm.pc"
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig
+    PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE
+)
+
+
