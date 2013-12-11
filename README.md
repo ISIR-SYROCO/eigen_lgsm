@@ -7,13 +7,14 @@ developped by CEA
 Install:
 --------
 
-`mkdir _build`
-`cd _build`
-`cmake -DCMAKE_INSTALL_PREFIX=prefix ..`
-`make install`
+    mkdir _build
+    cd _build
+    cmake -DCMAKE_INSTALL_PREFIX=prefix ..
+    make install
 
 Uninstall:
 ----------
-`cd _build`
-`xargs rm < install_manifest.txt`
+    
+    cd _build
+    xargs rm < install_manifest.txt
 
